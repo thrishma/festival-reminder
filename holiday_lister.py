@@ -1,7 +1,5 @@
 # Create a list of countries from a given url and fetch 
-# holidays for every country and save it in two ways -
-# 1. Per Date
-# 2. Per Country
+# holidays for every country and save it per date
 
 import requests
 from bs4 import BeautifulSoup
@@ -38,7 +36,7 @@ def find_countries():
 
 
 def find_holidays_per_country():
-    # Obtain a list of holidays for each country and save them based on eavh country and dates
+    # Obtain a list of holidays for each country and save them based on dates
     countries_names = find_countries()
     
     per_date_holidays_list = {}
