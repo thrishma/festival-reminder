@@ -1,6 +1,6 @@
 # Create a list of countries from a given url and fetch 
 # holidays for every country and save it in two ways -
-# 1. Per date
+# 1. Per Date
 # 2. Per Country
 
 import requests
