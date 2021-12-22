@@ -41,15 +41,12 @@ def find_holidays_per_country():
     # Obtain a list of holidays for each country and save them based on eavh country and dates
     countries_names = find_countries()
     
-    per_country_holidays_list = {}
     per_date_holidays_list = {}
 
     for country_id in countries_names.keys():
         print(f'Fetching details for {country_id}')
         per_country_holidays = requests.get(f'https://www.officeholidays.com/countries/{country_id}')
         per_country_holidays_soup = BeautifulSoup(per_country_holidays.content, 'html.parser')
-
-        per_country_holidays_list[country_id] = []
 
         table = per_country_holidays_soup.findAll('table')
         tbody = table[0].find('tbody')
@@ -67,14 +64,11 @@ def find_holidays_per_country():
                 "country_id": country_id
             }
 
-            per_country_holidays_list[country_id].append(holiday_related_data)
-
             if holiday_date not in per_date_holidays_list:
                 per_date_holidays_list[holiday_date] = [holiday_related_data]
             else:
                 per_date_holidays_list[holiday_date].append(holiday_related_data)
     
-    create_json_files('list_of_holidays_per_country.json', per_country_holidays_list)
     create_json_files('list_of_holidays_per_date.json', per_date_holidays_list)
 
 
